@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config = { theme: { extend: { colors: { primary: '#0066ff', secondary: '#00ff9d' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+<body>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #121212;
+            color: #f8f8f8;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #0066ff;
+        }
+    </style>
+
+    <section id="view">
+        <div class="container mx-auto px-6 mt-10 ">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                    <div class="relative h-64">
+                        <img src="/Medical.png" alt=".Medical" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Medical</h3>
+                        <p class="text-gray-400 mb-4">\cc.</p>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                <i class="ri-eye-line mr-1"></i> Live Demo
+                            </a>
+                            <a href="#"
+                                class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                <i class="ri-github-line mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6">
+
+    </section>
+</body>
+
+</html>

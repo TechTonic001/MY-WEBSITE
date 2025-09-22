@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amoo Halleluyah - Student Developer</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#0066ff', secondary: '#00ff9d' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #121212;
+            color: #f8f8f8;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(to right, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 0.9) 50%, rgba(18, 18, 18, 0.5) 100%), url('https://readdy.ai/api/search-image?query=modern%2520tech%2520workspace%2520with%2520glowing%2520blue%2520and%2520green%2520accents%252C%2520dark%2520atmosphere%252C%2520minimal%2520design%252C%2520abstract%2520geometric%2520patterns%252C%2520futuristic%2520technology%2520elements%252C%2520high%2520contrast%252C%2520professional%2520photography%252C%2520perfect%2520for%2520web%2520developer%2520portfolio%2520background&width=1600&height=900&seq=hero-bg&orientation=landscape');
+            background-size: cover;
+            background-position: center right;
+        }
+
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #2a2a2a;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #0066ff, #00ff9d);
+            transition: width 1.5s ease-in-out;
+        }
+
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.15);
+        }
+
+        .project-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5), transparent);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        input,
+        textarea {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #0066ff;
+            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.2);
+            outline: none;
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #0066ff;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0066ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .active-nav::after {
+            width: 100%;
+        }
+
+        .section-heading {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -10px;
+            left: 0;
+            background: linear-gradient(90deg, #0066ff, #00ff9d);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <header
+        class="fixed top-0 left-0 right-0 z-50 bg-[#121212] bg-opacity-95 backdrop-blur-sm border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white font-['Pacifico']">TechTonic</a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active-nav text-white hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-primary transition-colors">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-primary transition-colors">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-primary transition-colors">Contact</a>
+                </nav>
+                <button id="menu-button" class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#121212] border-t border-gray-800">
+            <div class="container mx-auto px-6 py-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="#home" class="text-white hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-primary transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col space-y-6">
+        <a href="https://github.com/TechTonic001" target="_blank"
+            class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full -gray-300 hover:text-primary">
+            <i class="ri-github-line ri-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/halleluyah-amoo-5aba97356/" target="_blank"
+            class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+            <i class="ri-linkedin-line ri-lg"></i>
+        </a>
+        <a href="https://www.instagram.com/techtonic_00001/" target="_blank"
+            class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+            <i class="ri-instagram-line ri-lg"></i>
+        </a>
+        <a href="https://x.com/Halleluyah66319/highlights" target="_blank"
+            class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+            <i class="ri-twitter-line ri-lg"></i>
+        </a>
+    </div>
+    <main>
+        <section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+            <div class="container mx-auto px-6">
+                <div class="w-full md:w-3/5 lg:w-1/2">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="text-white">Hi, I'm </span>
+                        <span class="text-primary">Amoo Halleluyah</span>
+                    </h1>
+                    <div class="h-12 mb-6">
+                        <p id="typing-text" class="text-xl md:text-2xl text-gray-300"></p>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-8 max-w-xl">
+                        A passionate student developer at SQI College of ICT, eager to learn and grow in the world of
+                        web development. I'm dedicated to building user-friendly websites and applications.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects"
+                            class="px-8 py-3 bg-primary text-white font-medium rounded-button transition-all hover:bg-opacity-90 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap">
+                            View My Work
+                        </a>
+                        <a href="#contact"
+                            class="px-8 py-3 bg-transparent border-2 border-primary text-primary font-medium rounded-button transition-all hover:bg-primary hover:bg-opacity-10 whitespace-nowrap">
+                            Hire Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="py-20 bg-[#151515]">
+            <div class="container mx-auto px-6">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white mb-16">About Me</h2>
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-full md:w-2/5">
+                        <div class="relative">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20 rounded-lg transform rotate-3">
+                            </div>
+                            <img src="./WhatsApp Image 2025-03-18 at 13.35.16_b65239d9.jpg"
+                                alt="TechTonic - Web Developer & Graphic Designer"
+                                class="relative z-10 rounded-lg shadow-xl object-cover w-full h-auto">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-3/5">
+                        <h3 class="text-2xl font-bold text-white mb-4">Who I Am</h3>
+                        <p class="text-gray-300 mb-6">
+                            I'm Amoo Halleluyah, a passionate web developer, creating digital experiences that users
+                            love. I'm student of SQI COLLEGE OF ICT, I
+                            specialize in building modern, responsive websites and applications that combine aesthetic
+                            appeal with functional excellence.
+                        </p>
+                        <p class="text-gray-300 mb-6">
+                            <!-- My journey began with a degree in Computer Science from UC Berkeley, followed by roles at
+                            tech startups and design agencies. This diverse background has given me a unique perspective
+                            on how to bridge the gap between technical requirements and creative vision. -->
+                        </p>
+                        <p class="text-gray-300 mb-8">
+                            <!-- When I'm not coding or designing, you'll find me hiking in the California mountains,
+                            experimenting with photography, or contributing to open-source projects that make the web
+                            more accessible. -->
+                        </p>
+                        <div class="flex flex-wrap gap-6 mb-8">
+                            <div>
+                                <p class="text-4xl font-bold text-primary mb-1">1+</p>
+                                <p class="text-gray-400">Years Experience</p>
+                            </div>
+                            <!-- <div>
+                                <p class="text-4xl font-bold text-primary mb-1">10+</p>
+                                <p class="text-gray-400">Projects Completed</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold text-primary mb-1">0</p>
+                                <p class="text-gray-400">Awards Won</p>
+                            </div>
+                        </div>
+                        <a href="#"
+                            class="inline-flex items-center px-6 py-3 bg-[#1e1e1e] text-white font-medium rounded-button transition-all hover:bg-[#2a2a2a] whitespace-nowrap">
+                            <i class="ri-download-line ri-lg mr-2"></i>
+                            Download Resume
+                        </a>
+                    </div> -->
+                        </div>
+                    </div>
+        </section>
+        <section id="skills" class="py-20 bg-[#121212]">
+            <div class="container mx-auto px-6">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white mb-16">My Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-[#1a1a1a] p-8 rounded-lg border border-gray-800">
+                        <div
+                            class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mb-6">
+                            <i class="ri-code-s-slash-line ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Frontend Development</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">HTML/CSS</span>
+                                    <span class="text-primary">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">JavaScript</span>
+                                    <span class="text-primary">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">React</span>
+                                    <span class="text-primary">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Vue.js</span>
+                                    <span class="text-primary">80%</span>
+                                </div> -->
+                                <!-- <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div> -->
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Tailwind CSS</span>
+                                    <span class="text-primary">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#1a1a1a] p-8 rounded-lg border border-gray-800">
+                        <div
+                            class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mb-6">
+                            <i class="ri-server-line ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Backend Development</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Node.js</span>
+                                    <span class="text-primary">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Express</span>
+                                    <span class="text-primary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Python</span>
+                                    <span class="text-primary">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div> -->
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">MongoDB</span>
+                                    <span class="text-primary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">SQL</span>
+                                    <span class="text-primary">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#1a1a1a] p-8 rounded-lg border border-gray-800">
+                        <div
+                            class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mb-6">
+                            <i class="ri-tools-line ri-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-4">Tools & Technologies</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Git</span>
+                                    <span class="text-primary">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">VS Code</span>
+                                    <span class="text-primary">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Command Line</span>
+                                    <span class="text-primary">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Responsive Design</span>
+                                    <span class="text-primary">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <!-- <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-300">Browser DevTools</span>
+                                    <span class="text-primary">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="py-20 bg-[#151515]">
+            <div class="container mx-auto px-6">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white mb-6">My Projects</h2>
+                <p class="text-gray-300 mb-12 max-w-2xl">Here's a selection of my recent work. Each project represents a
+                    unique challenge that I've solved through code and design.</p>
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button
+                        class="project-filter-btn active px-6 py-2 bg-[#1e1e1e] text-white rounded-full transition-all hover:bg-primary whitespace-nowrap">All</button>
+                    <button
+                        class="project-filter-btn px-6 py-2 bg-[#1e1e1e] text-gray-300 rounded-full transition-all hover:bg-primary hover:text-white whitespace-nowrap">Web
+                        Development</button>
+                    <button
+                        class="project-filter-btn px-6 py-2 bg-[#1e1e1e] text-gray-300 rounded-full transition-all hover:bg-primary hover:text-white whitespace-nowrap">HTML/CSS</button>
+                    <button
+                        class="project-filter-btn px-6 py-2 bg-[#1e1e1e] text-gray-300 rounded-full transition-all hover:bg-primary hover:text-white whitespace-nowrap">JavaScript</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                        <div class="relative h-64">
+                            <img src="/realbanking.png" alt="E-Commerce Platform"
+                                class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="flex gap-2 mb-2">
+                                    <!-- <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">React</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Node.js</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">MongoDB</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Banking Css</h3>
+                            <p class="text-gray-400 mb-4">\cc.</p>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-github-line mr-1"></i> Code
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                        <div class="relative h-64">
+                            <img src="Claculator website.png" alt="Task Management App"
+                                class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="flex gap-2 mb-2">
+                                    <!-- <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">React
+                                        Native</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Firebase</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Redux</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Full Working Claculator</h3>
+                            <p class="text-gray-400 mb-4">Behind every great solution is the right tool. A calculator
+                                doesn't just crunch numbers, it opens the door to accuracy, clarity, and confidence in
+                                every calculation</p>
+                            <div class="flex gap-3">
+                                <a href="https://techtonic001.github.io/FULL-CLACULATOR/"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-github-line mr-1"></i> Code
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+
+                        <div class="relative h-64">
+                            <img src="./Todo screenshot.png" alt="Analytics Dashboard"
+                                class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="flex gap-2 mb-2">
+                                    <!-- <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Vue.js</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">D3.js</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Express</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Todo application</h3>
+                            <p class="text-gray-400 mb-4">Add and Remove Cart.</p>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-github-line mr-1"></i> Code
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                        <div class="relative h-64">
+                            <img src="/grade .png" alt="Restaurant Website"
+                                class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <!-- <div class="flex gap-2 mb-2">
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">HTML/CSS</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">JavaScript</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">PHP</span>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Grading ystem</h3>
+                            <p class="text-gray-400 mb-4">“Grades are not just numbers on a sheet, they are tools to
+                                understand where you stand today and how you can do better tomorrow.</p>
+                            <div class="flex gap-3">
+                                <a href="https://techtonic001.github.io/Grading-System/"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>ol
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-github-line mr-1"></i> Code
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                        <div class="relative h-64">
+                            <img src="/image.png" alt="Fitness App" class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="flex gap-2 mb-2">
+                                    <!-- <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Flutter</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Firebase</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Figma</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Quote Generator</h3>
+                            <p class="text-gray-400 mb-4">Get inspired with random quotes. Click the button to display a
+                                new motivational quote.</p>
+                            <div class="flex gap-3">
+                                <a href="https://techtonic001.github.io/Joke-genarator/"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border bo rder-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-github-line mr-1"></i> Code
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1a1a1a] rounded-lg overflow-hidden border border-gray-800">
+                        <div class="relative h-64">
+                            <img src="//" alt="" class="w-full h-full object-cover object-top">
+                            <div class="project-overlay absolute inset-0 flex flex-col justify-end p-6">
+                                <div class="flex gap-2 mb-2">
+                                    <!-- <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Illustrator</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">Photoshop</span>
+                                    <span
+                                        class="px-2 py-1 bg-primary bg-opacity-20 text-primary text-xs rounded-full">InDesign</span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Quiz Application</h3>
+                            <p class="text-gray-400 mb-4">quiz</p>
+                            <div class="flex gap-3">
+                                <a href="#"
+                                    class="px-4 py-2 bg-[#2a2a2a] text-white text-sm rounded-button transition-all hover:bg-primary whitespace-nowrap">
+                                    <i class="ri-eye-line mr-1"></i> Live Demo
+                                </a>
+                                <!-- <a href="#"
+                                    class="px-4 py-2 bg-transparent border border-[#2a2a2a] text-gray-300 text-sm rounded-button transition-all hover:border-primary hover:text-primary whitespace-nowrap">
+                                    <i class="ri-behance-line mr-1"></i> Case Study
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="/more.html"
+                        class="inline-flex items-center px-8 py-3 bg-primary text-white font-medium rounded-button transition-all hover:bg-opacity-90 whitespace-nowrap">
+                        View All Projects
+                        <i class="ri-arrow-right-line ri-lg ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-[#121212]">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col items-center text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Let's Work Together</h2>
+                    <p class="text-gray-300 mb-8 max-w-2xl">I'm currently available for freelance projects and full-time
+                        opportunities. If you're interested in working together, let's connect!</p>
+                    <a href="#contact"
+                        class="px-8 py-3 bg-primary text-white font-medium rounded-button transition-all hover:bg-opacity-90 hover:shadow-lg hover:shadow-primary/20 whitespace-nowrap">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="py-20 bg-[#151515]">
+            <div class="container mx-auto px-6">
+                <h2 class="section-heading text-3xl md:text-4xl font-bold text-white mb-16">Contact Me</h2>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <div class="w-full lg:w-1/3">
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-2">Get in Touch</h3>
+                                <p class="text-gray-300">Have a project in mind or want to discuss potential
+                                    opportunities? Feel free to reach out using the form or contact information.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mr-4">
+                                    <i class="ri-mail-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1">Email</h4>
+                                    <p class="text-gray-300">amoohalleluyah@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mr-4">
+                                    <i class="ri-phone-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1">Phone</h4>
+                                    <p class="text-gray-300">+234 8074104143</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 text-primary rounded-lg mr-4">
+                                    <i class="ri-map-pin-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1">Location</h4>
+                                    <p class="text-gray-300">Oyo State Ogbomoso, Nigeria</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-medium mb-3">Connect</h4>
+                                <div class="flex space-x-4">
+                                    <a href="https://github.com/techtonic" target="_blank"
+                                        class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+                                        <i class="ri-github-line ri-lg"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/techtonic" target="_blank"
+                                        class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+                                        <i class="ri-linkedin-line ri-lg"></i>
+                                    </a>
+                                    <a href="https://instagram.com/techtonic" target="_blank"
+                                        class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+                                        <i class="ri-instagram-line ri-lg"></i>
+                                    </a>
+                                    <a href="https://twitter.com/amoohalleluyah" target="_blank"
+                                        class="social-icon w-10 h-10 flex items-center justify-center bg-[#1e1e1e] rounded-full text-gray-300 hover:text-primary">
+                                        <i class="ri-twitter-line ri-lg"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3">
+                        <form action="https://formspree.io/f/xldwapgr" method="POST" id="contact-form"
+                            class="bg-[#1a1a1a] p-8 rounded-lg border border-gray-800">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-300 mb-2">Name</label>
+                                    <input type="text" id="name" name="name"
+                                        class="w-full px-4 py-3 bg-[#1e1e1e] border border-gray-700 rounded text-white focus:border-primary focus:outline-none"
+                                        placeholder="Your name" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-300 mb-2">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full px-4 py-3 bg-[#1e1e1e] border border-gray-700 rounded text-white focus:border-primary focus:outline-none"
+                                        placeholder="Your email" required>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="w-full px-4 py-3 bg-[#1e1e1e] border border-gray-700 rounded text-white focus:border-primary focus:outline-none"
+                                    placeholder="Subject" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="6"
+                                    class="w-full px-4 py-3 bg-[#1e1e1e] border border-gray-700 rounded text-white focus:border-primary focus:outline-none resize-none"
+                                    placeholder="Your message" required></textarea>
+                            </div>
+                            <div class="flex items-center mb-6">
+                                <div class="relative inline-block w-10 h-6 mr-2">
+                                    <input type="checkbox" id="newsletter" class="sr-only">
+                                    <span
+                                        class="slider absolute cursor-pointer inset-0 bg-[#2a2a2a] rounded-full transition-all duration-300"></span>
+                                </div>
+                                <label for="newsletter" class="text-gray-300 cursor-pointer">Subscribe to my
+                                    newsletter</label>
+                            </div>
+                            <button type="submit"
+                                class="w-full px-6 py-3 bg-primary text-white font-medium rounded-button transition-all hover:bg-opacity-90 whitespace-nowrap">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#0f0f0f] py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <a href="#" class="text-2xl font-bold text-white font-['Pacifico'] mb-4 md:mb-0">Amoo Halleluyah</a>
+                <div class="flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-primary transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+                </div>
+            </div>
+            <hr class="border-gray-800 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Amoo Halleluyah. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/TechTonic001" target="_blank"
+                        class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-github-fill ri-lg"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/halleluyah-amoo-5aba97356/" target="_blank"
+                        class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-linkedin-fill ri-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/techtonic_00001/" target="_blank"
+                        class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-instagram-fill ri-lg"></i>
+                    </a>
+                    <a href="https://x.com/Halleluyah66319/highlights" target="_blank"
+                        class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-dribbble-fill ri-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a href="#home" id="back-to-top"
+        class="fixed bottom-6 right-6 w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="ri-arrow-up-line ri-lg"></i>
+    </a>
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                if (menuButton.querySelector('i').classList.contains('ri-menu-line')) {
+                    menuButton.querySelector('i').classList.remove('ri-menu-line');
+                    menuButton.querySelector('i').classList.add('ri-close-line');
+                } else {
+                    menuButton.querySelector('i').classList.remove('ri-close-line');
+                    menuButton.querySelector('i').classList.add('ri-menu-line');
+                }
+            });
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add('hidden');
+                    menuButton.querySelector('i').classList.remove('ri-close-line');
+                    menuButton.querySelector('i').classList.add('ri-menu-line');
+                });
+            });
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            // Active navigation link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', function () {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active-nav');
+                    }
+                });
+            });
+            // Back to top button
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    // backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+        });
+    </script>
+    <script id="typing-animation-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const typingText = document.getElementById('typing-text');
+            const phrases = [
+                'Student Developer at SQI COllege of ICT',
+                'Learning Web Development',
+                'Future Software Engineer',
+                'Tech Enthusiast'
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            function typeText() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Pause at the end
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    typingSpeed = 500; // Pause before typing next phrase
+                }
+                setTimeout(typeText, typingSpeed);
+            }
+            typeText();
+        });
+    </script>
+    <script id="skills-animation-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            function animateSkills() {
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 300);
+                });
+            }
+            // Animate on scroll
+            const skillsSection = document.getElementById('skills');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkills();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(skillsSection);
+        });
+    </script>
+    <script id="project-filter-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.project-filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('bg-[#1e1e1e]', 'text-gray-300');
+                    });
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('bg-[#1e1e1e]', 'text-gray-300');
+                    // Here you would typically filter projects
+                    // For demo purposes, we're just changing the button state
+                });
+            });
+        });
+    </script>
+    <script id="form-script">
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contact-form');
+            const newsletterCheckbox = document.getElementById('newsletter');
+            // Custom toggle switch styling
+            newsletterCheckbox.addEventListener('change', function () {
+                const slider = this.nextElementSibling;
+                if (this.checked) {
+                    slider.style.backgroundColor = '#0066ff';
+                    slider.style.boxShadow = '0 0 0 2px rgba(0, 102, 255, 0.2)';
+                } else {
+                    slider.style.backgroundColor = '#2a2a2a';
+                    slider.style.boxShadow = 'none';
+                }
+            });
+            // Form submission (prevent default for demo)
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Here you would typically handle form submission
+                // For demo purposes, we'll just show an alert
+                alert('Message sent successfully!');
+                contactForm.reset();
+                newsletterCheckbox.checked = false;
+                newsletterCheckbox.nextElementSibling.style.backgroundColor = '#2a2a2a';
+                newsletterCheckbox.nextElementSibling.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
